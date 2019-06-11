@@ -61,7 +61,7 @@ Currently, the OpenEBS provisioner supports only one type of binding i.e. iSCSI.
 
 m-apiserver runs as a POD. As the name suggests, m-apiserver exposes the OpenEBS REST APIs. 
 
-m-apiserver is also responsible for creating deployment specification files required for creating the volume pods. After generating these specification files, it invokes kube-apiserver for scheduling the pods accordingly. At the end of volume provisioning by the OpenEBS PV provisioner, a Kubernetes object PV is created and is mounted on the application pod. The PV is hosted by the controller pod which is supported by a set of replica pods in different nodes. The controller pod and replica pods are part of the data plane and are described in more detail in the [Storage Engines](/1.0.0-RC1/docs/next/storageengine.html) section.
+m-apiserver is also responsible for creating deployment specification files required for creating the volume pods. After generating these specification files, it invokes kube-apiserver for scheduling the pods accordingly. At the end of volume provisioning by the OpenEBS PV provisioner, a Kubernetes object PV is created and is mounted on the application pod. The PV is hosted by the controller pod which is supported by a set of replica pods in different nodes. The controller pod and replica pods are part of the data plane and are described in more detail in the [Storage Engines](/1.0.0-RC1/docs/next/casengines.html) section.
 
 Another important task of the m-apiserver is volume policy management. OpenEBS provides very granular specification for expressing policies. m-apiserver interprets these YAML specifications, converts them into enforceable components and enforces them through volume-management sidecars.
 
