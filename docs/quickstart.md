@@ -25,7 +25,7 @@ sidebar_label: Quickstart
         <li>Understand the <a href="/1.0.0-RC1/docs/next/prerequisites.html">pre-requisites</a> for your Kubernetes platform</li>
         <li>Start <a href="/1.0.0-RC1/docs/next/installation.html">installation </a> through OpenEBS operator.</li>
         <li>For production deployments or to test OpenEBS volumes on real disks, create cStorPools, cStor-StorageClasses and start provisioning volumes using the newly created cStor-StorageClasses. More details can be find from <a href="/1.0.0-RC1/docs/next/installation.html">here</a> </li>
-        <li>For high performance required applications which manage their own replication, data protection and other storage features, provision OpenEBS Local PV. More details can be find from [here]<a href="/1.0.0-RC1/docs/next/installation.html">here</a></li>
+        <li>For high performance required applications which manage their own replication, data protection and other storage features, provision OpenEBS Local PV. More details can be find from <a href="/1.0.0-RC1/docs/next/localpv.html">here</a></li>
     </ul>
 
 
@@ -43,23 +43,23 @@ sidebar_label: Quickstart
 
 <div class="emphasize">
 
-[Ubuntu](/1.0.0-RC1//docs/next/prerequisites.html#ubuntu)
+[Ubuntu](/1.0.0-RC1/docs/next/prerequisites.html#ubuntu)
 
-[RHEL](/1.0.0-RC1//docs/next/prerequisites.html#rhel)
+[RHEL](/1.0.0-RC1/docs/next/prerequisites.html#rhel)
 
-[CentOS](/1.0.0-RC1//docs/next/prerequisites.html#centos)
+[CentOS](/1.0.0-RC1/docs/next/prerequisites.html#centos)
 
-[OpenShift](/1.0.0-RC1//docs/next/prerequisites.html#openshift)
+[OpenShift](/1.0.0-RC1/docs/next/prerequisites.html#openshift)
 
-[Rancher](/1.0.0-RC1//docs/next/prerequisites.html#rancher)
+[Rancher](/1.0.0-RC1/docs/next/prerequisites.html#rancher)
 
-[ICP](/1.0.0-RC1//docs/next/prerequisites.html#icp)
+[ICP](/1.0.0-RC1/docs/next/prerequisites.html#icp)
 
-[EKS](/1.0.0-RC1//docs/next/prerequisites.html#eks)
+[EKS](/1.0.0-RC1/docs/next/prerequisites.html#eks)
 
-[GKE](/1.0.0-RC1//docs/next/prerequisites.html#gke)
+[GKE](/1.0.0-RC1/docs/next/prerequisites.html#gke)
 
-[AKS](/1.0.0-RC1//docs/next/prerequisites.html#aks)
+[AKS](/1.0.0-RC1/docs/next/prerequisites.html#aks)
 
 <br>
 
