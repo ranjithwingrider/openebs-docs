@@ -121,8 +121,7 @@ There are some cases where it had to delete the StatefulSet and re-install a new
    
 
 7. Get the newly created PVC UID using `kubectl get pvc mongo-persistent-storage-mongo-0 -o yaml`.
-
-   ​    
+  
 
 8. Update the uid under the claimRef in the PV using the following command. The PVC will get attached to the PV after editing the pv with correct uid.
 
@@ -131,7 +130,6 @@ There are some cases where it had to delete the StatefulSet and re-install a new
    ```
 
    
-
 9. Get the updated PVC status using the following command.
 
    ```
@@ -246,7 +244,7 @@ In earlier documentation, it was referred to install OpenEBS by disabling SELinu
    oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-maya-operator
    ```
 
-2. Find the latest OpenEBS release version from [here](/docs/next/releases.html) and download the latest OpenEBS operator YAML in your master node. The latest openebs-operator YAML file can be downloaded using the following way.
+2. Find the latest OpenEBS release version from [here](/1.0.0-RC1/docs/next/releases.html) and download the latest OpenEBS operator YAML in your master node. The latest openebs-operator YAML file can be downloaded using the following way.
 
    ```
    wget https://openebs.github.io/charts/openebs-operator-0.9.0.yaml
@@ -424,7 +422,7 @@ Currently,NDM is not selecting partition disks for creating device resource. But
 
 3. Repeat the same steps for each partitioned device that you have chosen for creating cStor pool.
 
-4. Get the `diskname` from `kubectl get disks` command and add the `diskname` in cStor StoragePoolClaim YAML. The steps for the creation of cStorStoragePool can be read [here](/docs/next/configurepools.html#creating-a-new-pool).
+4. Get the `diskname` from `kubectl get disks` command and add the `diskname` in cStor StoragePoolClaim YAML. The steps for the creation of cStorStoragePool can be read [here](/1.0.0-RC1/docs/next/ugcstor.html#creating-cStor-storage-pools).
 
 <hr>
 
