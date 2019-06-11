@@ -65,7 +65,7 @@ Use a similar PVC spec or volumeClaimTemplate to use a StorageClass that is poin
 
 **AccessModes:** cStor provides iSCSI targets, which are appropriate for RWO (ReadWriteOnce) access mode and is suitable for all types of databases. For webscale applications like WordPress or any for any other NFS needs, you need RWM (ReadWriteMany) access mode. For RWM, you need NFS provisioner to be deployed along with cStor. See how to provision <a href="/docs/next/rwm.html" target="_blank">RWM PVC with OpenEBS </a>.
 
-**Size:** cStor supports thin provisioning by default, which means you can request any size of the volume through the PVC and get it provisioned. Resize of the volume is not fully supported through the OpenEBS control plane in the current release (OpenEBS 0.9.0) and is active development, see [roadmap](/docs/next/cstor.html#cstor-roadmap) for more details. Hence it is recommended to give good amount of buffer to the required size of the volume so that you don't need to resize immediately or in the very short time period. 
+**Size:** cStor supports thin provisioning by default, which means you can request any size of the volume through the PVC and get it provisioned. Resize of the volume is not fully supported through the OpenEBS control plane in the current release (OpenEBS 1.0.0-RC1) and is active development, see [roadmap](/1.0.0-RC1/docs/next/cstor.html#cstor-roadmap) for more details. Hence it is recommended to give good amount of buffer to the required size of the volume so that you don't need to resize immediately or in the very short time period. 
 
 The following shows the example PVC configuration for a Deployment and a StatefulSet application which uses a configured StorageClass to provision a cStor Volume. The provided StorageClass name will contain the StoragePoolClaim name and the cStor Volume will provisioned on a StoragePool associated to the StroagePoolClaim.
 
@@ -242,13 +242,13 @@ This will not affect any `PersistentVolumeClaims` or `PersistentVolumes` that we
 
 <h3><a class="anchor" aria-hidden="true" id="backup-and-restore"></a>Backup and Restore</h3>
 
-OpenEBS volume can be backed up and restore along with application using OpenEBS velero plugin. It helps the user for taking backup of OpenEBS volumes to a thrid party storage location and then restoration of the data whenever it needed. The steps for taking backup and restore is given [here](/docs/next/backup.html).
+OpenEBS volume can be backed up and restore along with application using OpenEBS velero plugin. It helps the user for taking backup of OpenEBS volumes to a thrid party storage location and then restoration of the data whenever it needed. The steps for taking backup and restore is given [here](/1.0.0-RC1/docs/next/backup.html).
 
 
 
 <h3><a class="anchor" aria-hidden="true" id="Upgrading-the-software-version-of-a-cStor-volume"></a>Upgrading the software version of a cStor volume</h3>
 
-The steps are mentioned in Upgrade section. For upgrade cStorVolume, ensure that cStor Pool image is support this cStor volume image.  The steps for upgrading the cStor volume can be find from [here](/docs/next/upgrade.html).
+The steps are mentioned in Upgrade section. For upgrade cStorVolume, ensure that cStor Pool image is support this cStor volume image.  The steps for upgrading the cStor volume can be find from [here](/1.0.0-RC1/docs/next/upgrade.html).
 
 
 
@@ -381,7 +381,7 @@ In the above file, change the following parameters as required.
 
   This field  represents how the data will be written to the disks on a given pool instance on a node. Supported values are `striped` or `mirrored`.
 
-  Note: In OpenEBS, the pool instance do not extend beyond a node. The replication happens at volume level but not at pool level. See [volumes and pools relationship](/docs/next/cstor.html#relationship-between-cstor-volumes-and-cstor-pools) in cStor for a deeper understanding.
+  Note: In OpenEBS, the pool instance do not extend beyond a node. The replication happens at volume level but not at pool level. See [volumes and pools relationship](/1.0.0-RC1/docs/next/cstor.html#relationship-between-cstor-volumes-and-cstor-pools) in cStor for a deeper understanding.
 
 - `maxPools`
 
@@ -442,7 +442,7 @@ NAME ALLOCATED FREE CAPACITY STATUS TYPE AGE
 cstor-disk-4tfw 77K 39.7G 39.8G Healthy striped 42s
 ```
 
-**Note:** The cStor pool can be horizontally scale up on new OpenEBS Node by editing  the corresponding pool configuration YAML with the new disks name under `blockDeviceList` and update the `maxPools` count accordingly. More details can be found [here](/docs/next/ugcstor.html#expanding-cStor-pool-to-a-new-node).
+**Note:** The cStor pool can be horizontally scale up on new OpenEBS Node by editing  the corresponding pool configuration YAML with the new disks name under `blockDeviceList` and update the `maxPools` count accordingly. More details can be found [here](/1.0.0-RC1/docs/next/ugcstor.html#expanding-cStor-pool-to-a-new-node).
 
 <br>
 
@@ -839,7 +839,7 @@ In the case of provisioning StatfulSet applications with replication factor of  
 
 **Approach 1:**
 
-In this approach, modification is required on StatefulSet spec and corresponding StorageClass being referred in the StatefulSet spec. Add [openebs.io/sts-target-affinity](http://openebs.io/sts-target-affinity): <[metadata.name](http://metadata.name/) of STS> label in StatefulSet spec to the following fields.
+In this approach, modification is required on StatefulSet spec and corresponding StorageClass being referred in the StatefulSet spec. Add `openebs.io/sts-target-affinity: <metadata.name>` of application label in StatefulSet spec to the following fields.
 
 - spec.selector.matchLabels  
 - spec.template.labels
@@ -895,7 +895,7 @@ This approach is useful when user/tool does not have control over the StatefulSe
 
 Add following changes in the StorageClass that is referred to by the claimTemplates of this StatefulSet.
 
-- Add [openebs.io/sts-target-affinity](http://openebs.io/sts-target-affinity): <[metadata.name](http://metadata.name/) of STS> label to the following fields.
+- Add `openebs.io/sts-target-affinity: <metadata.name>` of application label to the following fields.
   - metadata.labels
 - Set volumeBindingMode to WaitForFirstConsumer
 
@@ -1053,7 +1053,7 @@ spec:
 
 <h3><a class="anchor" aria-hidden="true" id="Upgrade-the-software-version-of-a-cStor-pool"></a>Upgrade the Software Version of a cStor pool</h3>
 
-The steps for upgrading cStor Pool is mentioned in Upgrade section. Refer [Upgrade](/docs/next/upgrade.html) section for more details.
+The steps for upgrading cStor Pool is mentioned in Upgrade section. Refer [Upgrade](/1.0.0-RC1/docs/next/upgrade.html) section for more details.
 
 
 <h3><a class="anchor" aria-hidden="true" id="monitor-pool"></a>Monitor a cStor Pool</h3>
@@ -1155,7 +1155,7 @@ The steps for expanding the pool to new nodes is given below.
 
 <h4><a class="anchor" aria-hidden="true" id="With-specifiying-blockDeviceList"></a>With specifiying blockDeviceList</h4>
 
-If you are following this approach, you should have created cStor Pool initially using the steps provided [here](/docs/next/ugcstor.html#creating-cStor-storage-pools). For expanding pool onto a new OpenEBS node, you have to edit corresponding pool configuration(SPC) YAML with the required disks names under the `blockDeviceList` and update the `maxPools` count .
+If you are following this approach, you should have created cStor Pool initially using the steps provided [here](/1.0.0-RC1/docs/next/ugcstor.html#creating-cStor-storage-pools). For expanding pool onto a new OpenEBS node, you have to edit corresponding pool configuration(SPC) YAML with the required disks names under the `blockDeviceList` and update the `maxPools` count .
 
 **Step 1:** Edit the existing pool configuration spec that you originally used and apply it (OR) directly edit the in-use spec file using `kubectl edit spc <SPC Name>`.
 
@@ -1195,7 +1195,7 @@ OpenEBS team is working on both the CSI plugin as well as the feature to resize 
 
 <h3><a class="anchor" aria-hidden="true" id="Moving-a-disk-to-New-Node"></a>Moving Disks to New Node</h3>
 
-This activity can be done by some set of manual steps. In this section, you can detach the disk from the old node (if necessary) and attach to the new node. This can be done from the steps provided [here](https://github.com/openebs/openebs-docs/blob/day_2_ops/docs/cstor_move_disk.md). 
+This activity can be done by some set of manual steps. Using this manual steps, you can detach the disk from the old node (if necessary) and attach to the new node. This can be done from the steps provided [here](https://github.com/openebs/openebs-docs/blob/day_2_ops/docs/cstor_move_disk.md). 
 
 <br>
 
@@ -1203,11 +1203,11 @@ This activity can be done by some set of manual steps. In this section, you can 
 
 
 
-### [Understand cStorPools ](/docs/next/cstor.html#cstor-pools)
+### [Understand cStorPools ](/1.0.0-RC1/docs/next/cstor.html#cstor-pools)
 
-### [cStorPool use case for Prometheus](/docs/next/prometheus.html)
+### [cStorPool use case for Prometheus](/1.0.0-RC1/docs/next/prometheus.html)
 
-### [cStor roadmap](/docs/next/cstor.html#cstor-roadmap)
+### [cStor roadmap](/1.0.0-RC1/docs/next/cstor.html#cstor-roadmap)
 
 
 <br>
