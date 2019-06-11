@@ -37,6 +37,7 @@ filterconfigs:
   include: "/dev/sda"
   exclude: ""         
 ```
+When the above configuration is used, only the block device `/dev/sda` will be used for creating the blocek device custom resource. All other disks will be excluded.
 
 
 
@@ -102,7 +103,7 @@ Currently, NDM is not selecting partitioned disks for creating device resource. 
      labels:
        kubernetes.io/hostname: <host name in which disk/blockdevice is attached> # like gke-openebs-user-default-pool-044afcb8-bmc0
        ndm.io/managed: "false" # for manual disk creation put false
-       ndm.io/disk-type: <blockdevice type> # like disk, partition, sparse file
+       ndm.io/blockdevice-type: <blockdevice type> # like disk, partition, sparse file
    status:
      claimState: Unclaimed
      state: Active
