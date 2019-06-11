@@ -24,9 +24,8 @@ sidebar_label: Quickstart
         </li>
         <li>Understand the <a href="/docs/next/prerequisites.html">pre-requisites</a> for your Kubernetes platform</li>
         <li>Start <a href="/docs/next/installation.html">installation </a> through OpenEBS operator.</li>
-        <li>For test deployments, use default cStor StorageClass called openebs-cstor-sparse and start provisioning cStor OpenEBS volumes. The default cStor pool and StorageClass is disabled by default. This can be enabled during the installation of OpenEBS operator YAML and more details about enabling this feature can be read from <a href="/docs/next/installation.html#default-cstor-sparse-pool">here</a>.</li>
         <li>For production deployments or to test OpenEBS volumes on real disks, create cStorPools, cStor-StorageClasses and start provisioning volumes using the newly created cStor-StorageClasses. More details can be find [here](/docs/next/ugcstor.html)</li>
-        <li>For high performance required applications which manage their own replication, data protection and other storage features, provision OpenEBS Local PV. More details can be find [here](/docs/next/uglocalpv.html)</li>
+        <li>For high performance required applications which manage their own replication, data protection and other storage features, provision OpenEBS Local PV. More details can be find [here](/1.0.0-RC1/docs/next/uglocalpv.html)</li>
     </ul>
 
 
