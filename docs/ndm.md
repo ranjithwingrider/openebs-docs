@@ -18,12 +18,12 @@ Node Device Manager(NDM) is an important component in the OpenEBS architecture. 
 Inspite of doing all of the above, NDM contributes to overall ease of provisioning persistent volumes. 
 
 
+<br>
+
+<img src="/docs/assets/svg/ndm.svg" alt="NDM configuration Flow" style="width:70%">
 
 <br>
 
-<img src="/docs/assets/svg/ndm.svg" alt="NDM configuration flow" style="width:80%">
-
-<br>
 
 NDM is deployed as a daemonset during installation of OpenEBS. NDM daemonset discovers the disks on each node and creates a custom resource called Block Device or BD. This `blockdevice` CR is newly implemented in 1.0.0 release of OpenEBS and the old `disk` CR will be deprecated in the future releases. 
 
