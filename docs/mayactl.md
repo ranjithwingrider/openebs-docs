@@ -278,9 +278,9 @@ m-apiserver status:  running
 
 ## See Also:
 
-### [Day 2 Operations](/docs/next/operations.html)
+### [Day 2 Operations](/1.0.0-RC1/docs/next/operations.html)
 
-### [Troubleshooting Guide](/docs/next/troubleshooting.html)
+### [Troubleshooting Guide](/1.0.0-RC1/docs/next/troubleshooting.html)
 
 ### <br>
 
