@@ -91,9 +91,9 @@ When a PVC is invoked using the above storage class, OpenEBS Local PV  provision
 
 ### [OpenEBS Architecture](/1.0.0-RC1/docs/next/architecture.html)
 
-### [NDM](/1.0.0-RC1/docs/next/ndm.html)
+### [Understanding NDM](/1.0.0-RC1/docs/next/ndm.html)
 
-### [cStor](/1.0.0-RC1/docs/next/cstor.html)
+### [Local PV Guide](/1.0.0-RC1/docs/next/uglocalpv.html)
 
 <br>
 
