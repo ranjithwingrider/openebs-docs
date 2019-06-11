@@ -82,7 +82,6 @@ When a PVC is invoked using the above storage class, OpenEBS Local PV  provision
 - Disk quotas are not enforced by Local PV. An underlying disk or hostpath can have more data than requested by a PVC or storage class. Enforcing the capacity is a roadmap feature.
 - Enforce capacity and PVC resource quotas on the local disks or host paths.
 - SMART statistics of the managed disks is also a potential feature in roadmap.
-- 
 
 <br>
 
