@@ -185,7 +185,7 @@ Currently, NDM Daemon set runs in the privileged mode. NDM requires privileged m
 
 <h3><a class="anchor" aria-hidden="true" id="OpenEBS-install-prerequisites-openshift-centos"></a>What are the prerequisites other than general prerequisites for installing OpenEBS in Centos and OpenShift?</h3>
 
-If you are installing OpenEBS in CentOS or OpenShift,you must need to grant privileges to ndm pods. For installing OpenEBS in OpenShift environment,more details can be read [here](/docs/next/kb.html#OpenEBS-install-openshift-without-SELinux-disabled).
+If you are installing OpenEBS in CentOS or OpenShift,you must need to grant privileges to ndm pods. For installing OpenEBS in OpenShift environment,more details can be read [here](/1.0.0-RC1/docs/next/kb.html#OpenEBS-install-openshift-without-SELinux-disabled).
 
 <a href="#top">Go to top</a>
 
@@ -445,7 +445,7 @@ If `replicaCount` is 2 in StorageClass, then 2 OpenEBS volume will create on the
 
 <h3><a class="anchor" aria-hidden="true" id="create-cstor-volume-single-disk-pool"></a>How to create a cStor volume on single cStor disk pool?</h3>
 
-You can give the maxPools count as 1 in StoragePoolClaim YAML and `replicaCount` as `1`in StorageClass YAML. In the following sample SPC and SC YAML, cStor pool is created using auto method. After applying this YAML, one cStor pool named cstor-disk will be created only in one Node and `StorageClass` named `openebs-cstor-disk`. Only requirement is that one node has at least one disk attached but unmounted. See [here](docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume) to understand more about disk mount status.
+You can give the maxPools count as 1 in StoragePoolClaim YAML and `replicaCount` as `1`in StorageClass YAML. In the following sample SPC and SC YAML, cStor pool is created using auto method. After applying this YAML, one cStor pool named cstor-disk will be created only in one Node and `StorageClass` named `openebs-cstor-disk`. Only requirement is that one node has at least one disk attached but unmounted. See [here](/1.0.0-RC1/docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume) to understand more about disk mount status.
 
 ```
 ---
@@ -546,13 +546,13 @@ You can achieve encryption at rest using LUKS. Example tutorial for enabling LUK
 
 ## See Also:
 
-### [Creating cStor Pool](/docs/next/configurepools.html)
+### [Creating cStor Pool](/1.0.0-RC1/docs/next/ugcstor.html#creating-cStor-storage-pools)
 
-### [Provisioning cStor volumes](/docs/next/provisionvols.html)
+### [Provisioning cStor volumes](/1.0.0-RC1/docs/next/ugcstor.html#provisioning-a-cStor-volume)
 
-### [BackUp and Restore](/docs/next/backup.html)
+### [BackUp and Restore](/1.0.0-RC1/docs/next/backup.html)
 
-### [Uninstall](/docs/next/uninstall.html)
+### [Uninstall](/1.0.0-RC1/docs/next/uninstall.html)
 
 <br>
 
