@@ -12,7 +12,7 @@ sidebar_label: Jiva
 
 Jiva has a single container image for both controller and replica. Docker image is available at https://hub.docker.com/r/openebs/jiva/ . Each Jiva Volume comprises of a Jiva Controller (or Target) and a set of Jiva Replicas. The Jiva controller synchronously replicates the incoming IO to the Jiva replicas. The replica considers a Linux sparse file as the foundation. It supports thin provisioning, snapshotting of storage volumes.
 
-![Jiva storage engine of OpenEBS](/docs/assets/jiva.png)
+![Jiva storage engine of OpenEBS](/1.0.0-RC1/docs/assets/jiva.png)
 
 #### Jiva Sparse File Layout
 
@@ -52,11 +52,11 @@ It is not very efficient to rebuild replicas from scratch. We can improve rebuil
 
 ## See Also:
 
-### [Which storage engine should I use ?](/docs/next/casengines.html#cstor-vs-jiva-features-comparison)
+### [Which storage engine should I use ?](/1.0.0-RC1/docs/next/casengines.html#cstor-vs-jiva-features-comparison)
 
-### [Jiva user guide ](/docs/next/jivaguide.html)
+### [Jiva user guide ](/1.0.0-RC1/docs/next/jivaguide.html)
 
-### [cStor overview](/docs/next/cstor.html)
+### [cStor overview](/1.0.0-RC1/docs/next/cstor.html)
 
 <br>
 
