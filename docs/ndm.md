@@ -20,7 +20,7 @@ Inspite of doing all of the above, NDM contributes to overall ease of provisioni
 
 <br>
 
-<img src="/docs/assets/svg/ndm.svg" alt="NDM configuration Flow" style="width:80%">
+<img src="/1.0.0-RC1/docs/assets/svg/ndm.svg" alt="NDM configuration Flow" style="width:80%">
 
 <br>
 
