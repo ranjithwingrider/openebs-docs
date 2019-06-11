@@ -21,7 +21,7 @@ Inspite of doing all of the above, NDM contributes to overall ease of provisioni
 
 <br>
 
-<img src="/docs/assets/svg/ndm.svg" alt="NDM configuration flow" style="width:100%">
+<img src="/docs/assets/svg/ndm.svg" alt="NDM configuration flow" style="width:80%">
 
 <br>
 
@@ -59,7 +59,7 @@ So at a high level, to allow OpenEBS to run in privileged mode in selinux=on nod
     - Sector Size
   - labels:
     - hostname (kubernetes.io/hostname)
-    - disk-type (ndm.io/disk-type)
+    - blockdevice-type (ndm.io/blockdevice-type)
     - Managed (ndm.io/managed)
   - status can have the following values:
     - Active : Disk is detected on the node
