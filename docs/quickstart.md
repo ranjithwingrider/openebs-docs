@@ -24,8 +24,8 @@ sidebar_label: Quickstart
         </li>
         <li>Understand the <a href="/1.0.0-RC1/docs/next/prerequisites.html">pre-requisites</a> for your Kubernetes platform</li>
         <li>Start <a href="/1.0.0-RC1/docs/next/installation.html">installation </a> through OpenEBS operator.</li>
-        <li>For production deployments or to test OpenEBS volumes on real disks, create cStorPools, cStor-StorageClasses and start provisioning volumes using the newly created cStor-StorageClasses. More details can be find from <a href="/1.0.0-RC1/docs/next/installation.html">here</a> </li>
-        <li>For high performance required applications which manage their own replication, data protection and other storage features, provision OpenEBS Local PV. More details can be find from <a href="/1.0.0-RC1/docs/next/localpv.html">here</a></li>
+        <li>For production deployments or to test OpenEBS volumes on real disks, create cStorPools, cStor-StorageClasses and start provisioning volumes using the newly created cStor-StorageClasses. More details can be find from <a href="/1.0.0-RC1/docs/next/ugcstor.html">here</a></li>
+        <li>For high performance required applications which manage their own replication, data protection and other storage features, provision OpenEBS Local PV. More details can be find from <a href="/1.0.0-RC1/docs/next/localpv.html">here.</a></li>
     </ul>
 
 
