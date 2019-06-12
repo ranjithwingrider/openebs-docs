@@ -303,7 +303,7 @@ blockdevice-936911c5c9b0218ed59e64009cc83c8f 42949672960 Unclaimed Active 3m
 To know which block device CR belongs to which node, check the node label set on the CR by doing the following command.
 
 ```
-kubectl describe disk <disk-cr>
+kubectl describe blockdevice <blockdevice-cr>
 ```
 
 
