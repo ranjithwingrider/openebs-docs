@@ -33,7 +33,7 @@ MinIO is a high performance distributed object storage server, designed for larg
 
 <br>
 
-<img src="/docs/assets/svg/minio-deployment.svg" alt="OpenEBS and Minio" style="width:100%;">
+<img src="/docs/assets/minio-choose-engine.png" alt="OpenEBS and Minio" style="width:400px;">
 
 <br>
 
