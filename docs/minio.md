@@ -151,7 +151,7 @@ https://<Node_external_ip>:<Node_port>
 
 Note:
 - Node external IP address can be obtained by running `kubectl get node -o wide`
-- Node port can be obtained by running `kubectl get svc -l app=minio
+- Node port can be obtained by running `kubectl get svc -l app=minio`
 
 **In Distributed mode:**
 
@@ -192,7 +192,7 @@ Local PV can be provisioned by following of the options below:
   MinIO application can be launched using device-based Local PV by running below command:
   
    ```
-   helm install --name=minio-test --set mode=distributed,accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-device,service.type=NodePort,persistence.enabled=true stable/minio
+  helm install --name=minio-test --set mode=distributed,accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-device,service.type=NodePort,persistence.enabled=true stable/minio
    ```
   Or
   ```
@@ -208,7 +208,7 @@ https://<Node_external_ip>:<Node_port>
 
 Note:
 - Node external IP address can be obtained by running `kubectl get node -o wide`
-- Node port can be obtained by running `kubectl get svc -l app=minio
+- Node port can be obtained by running `kubectl get svc -l app=minio`
 
 
 <h4><a class="anchor" aria-hidden="true" id="minio-cstor"></a>MinIO on cStor</h4>
@@ -223,7 +223,7 @@ The cStor volume can be provisioned using the following steps;
 - Creating cStor pools.
   This will create a StoragePoolClaim which will define multiple storage pools. cStor StoragePoolClaim can be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-pools). For example, the SPC name used in this example is `cstor-disk-pool`. This has to be mentioned in the StorageClass which is going to be created in the next step. It is required a minimum of 3 nodes with disks attached to it for maintaining the quorum and the storage level replication.
   
-- Creating a cStor StorageClass which uses StoragePoolClaim name created in the previous step, replicaCount which defines the number of storage volume replicas and required other [storage policies](https://docs.openebs.io/docs/next/ugcstor.html#cstor-storage-policies). StorageClass be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-class). For example, StorageClass used in this example is `openebs-sc`. Use this SC name in the application deployment command. The replica count mentioned in this StorageClass should be minimum three (3).
+- Creating a cStor StorageClass which uses StoragePoolClaim name created in the previous step, `replicaCount` which defines the number of storage volume replicas and required other [storage policies](https://docs.openebs.io/docs/next/ugcstor.html#cstor-storage-policies). StorageClass be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-class). For example, StorageClass used in this example is `openebs-sc`. Use this SC name in the application deployment command. The replica count mentioned in this StorageClass should be minimum three (3).
 
    
   
@@ -278,7 +278,7 @@ https://<Node_external_ip>:<Node_port>
 
 Note:
 - Node external IP address can be obtained by running `kubectl get node -o wide`
-- Node port can be obtained by running `kubectl get svc -l app=minio
+- Node port can be obtained by running `kubectl get svc -l app=minio`
 
 
 <h4><a class="anchor" aria-hidden="true" id="minio-cstor"></a>MinIO on Jiva</h4>
@@ -302,13 +302,14 @@ The steps for provisioning MinIO application in standalone mode using Jiva volum
     ```
     helm install --name=minio-test --set accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-jiva-default,service.type=NodePort,persistence.enabled=true  stable/minio
     ```
-  ```
-    Or
-  ```
+    
+    or
+    
+    ```
     kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-jiva-default.yaml
     ```
-    This will create a MinIO application on a PV with a replication factor of three (3) Jiva volume and capacity of 10Gi on default Jiva pool created on OS disk.
-    ```
+    
+     This will create a MinIO application on a PV with a replication factor of three (3) Jiva volume and capacity of 10Gi on default Jiva pool created on OS disk.
   
 -  Storage Pool using External disk       	
   
@@ -341,7 +342,7 @@ https://<Node_external_ip>:<Node_port>
 
 Note:
 - Node external IP address can be obtained by running `kubectl get node -o wide`
-- Node port can be obtained by running `kubectl get svc -l app=minio
+- Node port can be obtained by running `kubectl get svc -l app=minio`
 
 <br>
 
