@@ -212,7 +212,6 @@ Note:
 
 
 <h4><a class="anchor" aria-hidden="true" id="minio-cstor"></a>MinIO on cStor</h4>
-
 cStor can be used if MinIO deployment cannot provide the replication of data by itself or it requires storage replication, moderate performance and Day 2 operations support such as volume/pool capacity expansion, disk replacement, snapshot, clones, scaling up and scaling down of volume replicas. cStor support the creation of a storage pool using multiple disks on the nodes which can be used to provision multiple volumes and on-demand pool capacity expansion can be achieved by adding more disks to the pool or expanding the size of the cloud disks. cStor also provides additional features such as thin provisioning, storage level snapshot and clone capability. 
 
 The steps for provisioning MinIO application in both method using cStor volume can be done by follows:
@@ -228,7 +227,7 @@ The cStor volume can be provisioned using the following steps;
 
    
   
-  <img src="/docs/assets/svg/cstor-standalone-minio.svg.svg" alt="OpenEBS and MinIO standalone cStor " style="width:400px;">
+  <img src="/docs/assets/svg/cstor-standalone-minio.svg" alt="OpenEBS and MinIO standalone cStor " style="width:400px;">
   
   
   
@@ -302,12 +301,14 @@ The steps for provisioning MinIO application in standalone mode using Jiva volum
   - Launch MinIO application using the following command. User can include the default StorageClass name in the following command:
     ```
     helm install --name=minio-test --set accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-jiva-default,service.type=NodePort,persistence.enabled=true  stable/minio
+    ```
   ```
     Or
-    ```
+  ```
     kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-jiva-default.yaml
     ```
     This will create a MinIO application on a PV with a replication factor of three (3) Jiva volume and capacity of 10Gi on default Jiva pool created on OS disk.
+    ```
   
 -  Storage Pool using External disk       	
   
