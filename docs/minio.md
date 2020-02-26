@@ -49,9 +49,8 @@ sidebar_label: Minio
 3. Select OpenEBS storage engine 
 4. Create a new StorageClass or use default StorageClass based on the storage engine
 5. Launch MinIO application by using the corresponding StorageClass
-   
+  
 <h3><a class="anchor" aria-hidden="true" id="install-openebs"></a>Identify the installation method for MinIO</h3>
-
 MinIO can be installed by following the below two options:
 
 - Standalone mode
@@ -66,18 +65,16 @@ For more information on installation, see MinIO [documentation](https://github.c
 
 
 <h3><a class="anchor" aria-hidden="true" id="install-openebs"></a>Install OpenEBS</h3>
-
 If OpenEBS is not installed in your Kubernetes cluster, this can be done following the installation instructions [here](https://docs.openebs.io/docs/next/installation.html). If OpenEBS is already installed, skip to the next step.
 
 <h3><a class="anchor" aria-hidden="true" id="install-openebs"></a>Select OpenEBS storage engine </h3>
-
 Choosing a storage engine depends entirely on the application workload as well as it's current and future growth in capacity and/or performance. Additional details of the storage engines can be found [here](https://docs.openebs.io/docs/next/casengines.html#when-to-choose-which-cas-engine). You can refer to one of the storage engine sections below based on your selection.
 
 - [Local PV](https://docs.openebs.io/docs/next/localpv.html)
 - [cStor](https://docs.openebs.io/docs/next/cstor.html)
 - [Jiva](https://docs.openebs.io/docs/next/jiva.html)
 
-The following is a quick summary of considerations choosing a storage engine for MinIO:
+The following is a quick summary of considerations for choosing a storage engine for MinIO:
 
 - If the use-case requires higher performance and does not require replication at the storage level, then OpenEBS **Local PV** is the recommended storage engine. If Local PV device-based StorageClass is used, then only one MinIO application on the Node can be consumed. If it is Local PV hostpath-based StorageClass, then other than MinIO, other applications can be provisioned on the same hostpath location.
 
@@ -87,8 +84,7 @@ The following is a quick summary of considerations choosing a storage engine for
 
 
 <h3><a class="anchor" aria-hidden="true" id="install-openebs"></a>Create a new StorageClass or use the default StorageClass</h3>
-
-Based on the OpenEBS storage engine selection, the user has to create a Storage Class with required storage policies on it, or they can use the default StorageClass created as part of OpenEBS installation. For example, if the selected OpenEBS storage engine is cStor and MinIO deploying in distributed mode, the user can create a cStor storage pool on each of the four (4) nodes and then use the corresponding `StoragePoolClaim` name in the StorageClass with replicaCount as `1`. 
+Based on the OpenEBS storage engine selection, the user has to create a Storage Class with required storage policies on it, or they can use the default StorageClass created as part of OpenEBS installation. For example, if the selected OpenEBS storage engine is cStor and MinIO deploying in distributed mode, the user can create a cStor storage pool on each of the four (4) nodes and then use the corresponding `StoragePoolClaim` name in the StorageClass with `replicaCount` as `1`. 
 
 The steps for the creation of StorageClass can be found below:
 
@@ -98,9 +94,7 @@ The steps for the creation of StorageClass can be found below:
 
 
 <h3><a class="anchor" aria-hidden="true" id="install-openebs"></a>Launch MinIO application by using the corresponding StorageClass</h3>
-
 <h4><a class="anchor" aria-hidden="true" id="minio-localpv"></a>MinIO on Local PV</h4>
-
 MinIO can be provisioned on OpenEBS Local PV either on hostpath or on block Device. Local PV can be used if low-latency is a must requirement, and if the application can handle the replication by itself in `distributed mode` and/or application does not require replication at all in `standalone mode`.
 
 **In Standalone mode:**
@@ -111,6 +105,12 @@ Local PV can be provisioned by following of the options below:
 
   In this case, Local PV volume will be provisioned on the hostpath created on the node where the application has been scheduled. A persistent volume (PV) will be created with a specified size on `/var/openebs/local` directory on the same node when it uses default StorageClass  `openebs-hostpath`. 
   Customizing the basepath can also be done using the steps provided [here](https://docs.openebs.io/docs/next/uglocalpv.html#configure-hostpath). Using the customized basepath, user can mount the device and use this mounted directory into the basepath field in the StorageClass.
+
+  
+
+  <img src="/docs/assets/svg/Local-PV-standalone-default-minio.svg" alt="OpenEBS and MinIO Standalone localpv hostpath" style="width:400px;">
+
+  
 
   After creating the StorageClass with required information, MinIO application can be launched using Local PV hostpath by running below command:
   ```
@@ -127,10 +127,16 @@ Local PV can be provisioned by following of the options below:
 
   In this case, Local PV volume will be provisioned on the node where the application has scheduled and any of the unclaimed and active blockdevices available on the same node. Local PV devices will use the entire blockdevice for the MinIO application. The blockdevice can be mounted or raw device on the node where your application is scheduled and this blockdevice cannot be used by another application. If there are limited blockdevices attached to some of the nodes, then users can use `nodeSelector` in the application YAML to provision application on a particular node where the available blockdevice is present.
 
+  
+  
+  <img src="/docs/assets/svg/Local-PV-standalone-device-minio.svg" alt="OpenEBS and MinIO Standalone localpv device" style="width:400px;">
+  
+  
+  
   MinIO application can be launched using Local PV device by running below command:
   ```
   helm install --name=minio-test --set accessKey=minio,secretKey=minio123,persistence.storageClass=openebs-device,service.type=NodePort,persistence.enabled=true stable/minio
-  ``` 
+  ```
   Or
   ```
   kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-localpv-device.yaml
@@ -155,7 +161,15 @@ Local PV can be provisioned by following of the options below:
 
   In this case, Local PV volume will be provisioned on the hostpath on the node, where the application is getting scheduled. A PV will be created with a specified size inside `/var/openebs/local` directory on all four (4) nodes when it uses default Storage Class  `openebs-hostpath`. 
   Customizing the basepath can also be done using the steps provided [here](https://docs.openebs.io/docs/next/uglocalpv.html#configure-hostpath). Using the customized basepath, user can mount the device and use this mounted directory into the basepath field in the StorageClass.
+
+  
+
+  <img src="/docs/assets/svg/Local-PV-Distributed-hostpath-minio.svg" alt="OpenEBS and MinIO Distributed localpv hostpath" style="width:400px;">
+
+  
+
   MinIO application can be launched using hostpath based Local PV by running below command:
+
   ```
   helm install --name=minio-test --set mode=distributed,accessKey=minio,secretKey=minio123,persistence.storageClass=openebs-hostpath,service.type=NodePort,persistence.enabled=true stable/minio
   ```
@@ -169,11 +183,17 @@ Local PV can be provisioned by following of the options below:
 
   In this case, Local PV volume will be provisioned on the node where the application has scheduled and any of the unclaimed and active blockdevices available on the same node. Local PV devices will use the entire blockdevice for MinIO application. The blockdevice can be mounted or raw device on the node where your application is scheduled and this blockdevice cannot be used by another application. If you have limited blockdevices attached to some nodes, then users can use `nodeSelector` in the application YAML to provision application on a particular node where the available blockdevice is present. Since MinIO is in distributed mode, it requires a minimum of four (4) nodes and a single unclaimed external disk should be attached to each of these four nodes.
   
-  MinIO application can be launched using device-based Local PV by running below command:
+  
 
+  <img src="/docs/assets/svg/Local-PV-Distributed-device-minio.svg" alt="OpenEBS and MinIO Distributed localpv device" style="width:400px;">
+  
+  
+  
+  MinIO application can be launched using device-based Local PV by running below command:
+  
    ```
    helm install --name=minio-test --set mode=distributed,accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-device,service.type=NodePort,persistence.enabled=true stable/minio
-  ```
+   ```
   Or
   ```
   kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-distributed-localpv-device-default.yaml
@@ -192,7 +212,6 @@ Note:
 
 
 <h4><a class="anchor" aria-hidden="true" id="minio-cstor"></a>MinIO on cStor</h4>
-  
 
 cStor can be used if MinIO deployment cannot provide the replication of data by itself or it requires storage replication, moderate performance and Day 2 operations support such as volume/pool capacity expansion, disk replacement, snapshot, clones, scaling up and scaling down of volume replicas. cStor support the creation of a storage pool using multiple disks on the nodes which can be used to provision multiple volumes and on-demand pool capacity expansion can be achieved by adding more disks to the pool or expanding the size of the cloud disks. cStor also provides additional features such as thin provisioning, storage level snapshot and clone capability. 
 
@@ -204,8 +223,17 @@ The cStor volume can be provisioned using the following steps;
 
 - Creating cStor pools.
   This will create a StoragePoolClaim which will define multiple storage pools. cStor StoragePoolClaim can be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-pools). For example, the SPC name used in this example is `cstor-disk-pool`. This has to be mentioned in the StorageClass which is going to be created in the next step. It is required a minimum of 3 nodes with disks attached to it for maintaining the quorum and the storage level replication.
+  
 - Creating a cStor StorageClass which uses StoragePoolClaim name created in the previous step, replicaCount which defines the number of storage volume replicas and required other [storage policies](https://docs.openebs.io/docs/next/ugcstor.html#cstor-storage-policies). StorageClass be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-class). For example, StorageClass used in this example is `openebs-sc`. Use this SC name in the application deployment command. The replica count mentioned in this StorageClass should be minimum three (3).
-Launch MinIO application using the following command. You may change the StorageClass name as per the one created in the previous step.
+
+   
+  
+  <img src="/docs/assets/svg/cstor-standalone-minio.svg.svg" alt="OpenEBS and MinIO standalone cStor " style="width:400px;">
+  
+  
+  
+- Launch MinIO application using the following command. You may change the StorageClass name as per the one created in the previous step.
+
   ```
   helm install --name=minio-test --set accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-sc,service.type=NodePort,persistence.enabled=true  stable/minio
   ```
@@ -222,9 +250,18 @@ The cStor volume can be provisioned using the following steps.
 
 - Creating cStor pools. 
   This will create a StoragePoolClaim, which will define multiple storage pools. cStor StoragePoolClaim can be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-pools). For example, the SPC name used in this example is `cstor-disk-pool`. This has to be mentioned in the Storage Class, which is going to be created in the next step. MinIO in distributed mode can be able to perform replication by itself, so only one replica at storage level is enough. MinIO on cStor will give a medium performance and can be able to do resize of volume and snapshot and clone capability.
+  
 - Creating a cStor StorageClass 
    The StorageClass uses StoragePoolClaim name created in the previous step, replicaCount, which defines the number of storage volume replicas and other required [storage policies](https://docs.openebs.io/docs/next/ugcstor.html#cstor-storage-policies). StorageClass can be created using the steps provided [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-class). For example, StorageClass used in this example is `openebs-sc-rep1`. Use this SC name in the application deployment command. The replica count mentioned in this StorageClass is one (1).
+   
+   
+   
+   <img src="/docs/assets/svg/cstor-distributed-minio.svg" alt="OpenEBS and MinIO Distributed cStor " style="width:400px;">
+   
+   
+   
 - Launch MinIO application using the following command. You may change the StorageClass name as per the one created in the previous step.
+  
   ```
   helm install --name=minio-test --set mode=distributed,accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-sc-rep1,service.type=NodePort,persistence.enabled=true  stable/minio
   ```
@@ -246,7 +283,6 @@ Note:
 
 
 <h4><a class="anchor" aria-hidden="true" id="minio-cstor"></a>MinIO on Jiva</h4>
-
 Jiva can be chosen for smaller capacity workloads in general and if it requires storage level replication but does not need snapshots and clones. Jiva volume can be provisioned using default StorageClass `openebs-jiva-default` which will create PV under `/var/openebs/` or it can be created on an external mounted disk on the worker node. 
 
 **In Standalone mode:**
@@ -257,20 +293,34 @@ The steps for provisioning MinIO application in standalone mode using Jiva volum
   
   - Use the default Storage pool `default`. The default storage pool will be created on the OS disk using the sparse disk once OpenEBS is installed. For using default Storage Pool, user can simply use default StroageClass `openebs-jiva-default` in the PVC spec of the application.
   
+     
+  
+    <img src="/docs/assets/svg/JIVA-standalone-default-pool-minio.svg" alt="OpenEBS and MinIO standalone jiva default" style="width:400px;"> 
+  
+    
+  
   - Launch MinIO application using the following command. User can include the default StorageClass name in the following command:
     ```
     helm install --name=minio-test --set accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-jiva-default,service.type=NodePort,persistence.enabled=true  stable/minio
-    ```
+  ```
     Or
     ```
     kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-jiva-default.yaml
     ```
     This will create a MinIO application on a PV with a replication factor of three (3) Jiva volume and capacity of 10Gi on default Jiva pool created on OS disk.
-
+  
 -  Storage Pool using External disk       	
-   
+  
    - Creating a Jiva pool using a single mounted disk. The mount path should be the same on all the Node where the Jiva volume replica will be provisioned. The steps for creating a Jiva pool are mentioned [here](https://docs.openebs.io/docs/next/jivaguide.html#create-a-pool).
-   - Create/use a StorageClass, which uses Jiva Storagepool created with a mounted disk in the previous step. For example, StorageClass used in this example is `openebs-jiva-sc`. Use this SC name in the application deployment command.
+   
+   - Create/use a StorageClass, which uses Jiva Storage pool created with a mounted disk in the previous step. For example, StorageClass used in this example is `openebs-jiva-sc`. Use this SC name in the application deployment command.
+   
+     
+   
+     <img src="/docs/assets/svg/JIVA-standalone-storage-pool-minio.svg" alt="OpenEBS and MinIO standalone jiva storage pool" style="width:400px;">
+   
+     
+   
    - Launch MinIO application using the following command. You may change the StorageClass name as per the one created in the previous step.
      ```
      helm install --name=minio-test --set accessKey=myaccesskey,secretKey=mysecretkey,persistence.storageClass=openebs-jiva-sc,service.type=NodePort,persistence.enabled=true  stable/minio
