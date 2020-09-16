@@ -61,7 +61,7 @@ MinIO can be installed by following the below two options:
 
   MinIO can provide the replication of data by itself in distributed mode. This method installs MinIO application, which is a StatefulSet kind. It requires a minimum of four (4) nodes to setup MinIO in distributed mode. A distributed MinIO setup with 'n' number of disks/storage has your data safe as long as n/2 or more disks/storage are online. Users should maintain a minimum (n/2 + 1) disks/storage to create new objects. So based on the requirement, the user can choose the appropriate OpenEBS storage engine to run MinIO in distributed mode.
 
-For more information on installation, see MinIO [documentation](https://github.com/helm/charts/tree/master/stable/minio).
+For more information on installation, see MinIO [documentation](https://docs.min.io/docs/deploy-minio-on-kubernetes.html).
 
 
 <h3><a class="anchor" aria-hidden="true" id="install-openebs"></a>Install OpenEBS</h3>
@@ -89,7 +89,7 @@ Based on the OpenEBS storage engine selection, the user has to create a Storage 
 The steps for the creation of StorageClass can be found below:
 
 - [cStor](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-class)
-- [Local PV hostpath](https://docs.openebs.io/docs/next/localpv.html#openebs-localpv-hostpath), [Local PV device](https://docs.openebs.io/docs/next/localpv.html#openebs-localpv-device), [Local PV with Customized hostpath](https://docs.openebs.io/docs/next/uglocalpv.html#using-storageclass)
+- [Local PV hostpath](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html), [Local PV device](https://docs.openebs.io/docs/next/uglocalpv-device.html), [Local PV with Customized hostpath](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html#create-storageclass)
 - [Jiva](https://docs.openebs.io/docs/next/jivaguide.html#create-a-sc)
 
 
@@ -118,12 +118,12 @@ Local PV can be provisioned by following of the options below:
   ```
   Or
   ```
-  kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-localpv-hostpath-default.yaml
+  kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-standalone-localpv-hostpath-default.yaml
   ```
 
   This will create a MinIO application running with one replica of a PV with 10Gi on default Local PV hostpath `/var/openebs/local/` directory on the node where the application pod has scheduled, if basepath is not customized.
 
-- LocalPV-Device-based 
+- Device-based 
 
   In this case, Local PV volume will be provisioned on the node where the application has scheduled and any of the unclaimed and active blockdevices available on the same node. Local PV devices will use the entire blockdevice for the MinIO application. The blockdevice can be mounted or raw device on the node where your application is scheduled and this blockdevice cannot be used by another application. If there are limited blockdevices attached to some of the nodes, then users can use `nodeSelector` in the application YAML to provision application on a particular node where the available blockdevice is present.
 
@@ -139,7 +139,7 @@ Local PV can be provisioned by following of the options below:
   ```
   Or
   ```
-  kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-localpv-device.yaml
+  kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-standalone-localpv-device.yaml
   ```
   This will create a single MinIO application on a single disk that is attached to the same node where the application is scheduled.
 
@@ -175,11 +175,11 @@ Local PV can be provisioned by following of the options below:
   ```
   Or
   ```
-  kubectl apply -f https://github.com/ranjithwingrider/solution-app/blob/master/minio-distributed-localpv-hostpath-default-kubectl.yaml
+  kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-distributed-localpv-hostpath-default.yaml
   ```
   This will create a MinIO application with replica count four (4) running with a single replica of PV with 10Gi for all the four application instances on default Local PV hostpath `/var/openebs/local/` directory on the nodes where the application has been scheduled, if basepath is not customized.
 
-- LocalPV-Device-based 
+- Device-based 
 
   In this case, Local PV volume will be provisioned on the node where the application has scheduled and any of the unclaimed and active blockdevices available on the same node. Local PV devices will use the entire blockdevice for MinIO application. The blockdevice can be mounted or raw device on the node where your application is scheduled and this blockdevice cannot be used by another application. If you have limited blockdevices attached to some nodes, then users can use `nodeSelector` in the application YAML to provision application on a particular node where the available blockdevice is present. Since MinIO is in distributed mode, it requires a minimum of four (4) nodes and a single unclaimed external disk should be attached to each of these four nodes.
   
@@ -196,7 +196,7 @@ Local PV can be provisioned by following of the options below:
    ```
   Or
   ```
-  kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-distributed-localpv-device-default.yaml
+  kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-distributed-localpv-device-default.yaml
   ```
   This will create a MinIO application running with one replica on each of the four (4) nodes. This means one PVC with 10Gi will be created on each of suitable blockdevice on these 4 nodes. 
 
@@ -238,7 +238,7 @@ The cStor volume can be provisioned using the following steps;
   ```
   Or
   ```
-  kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-cstor.yaml
+  kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-standalone-cstor.yaml
   ```
 
 This will create a MinIO application on cStor volume with 3 replicas and capacity of 10Gi on cStor pool.
@@ -266,7 +266,7 @@ The cStor volume can be provisioned using the following steps.
   ```
   Or
   ```
-  kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-distributed-cstor.yaml
+  kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-distributed-cstor.yaml
   ```
   This will create a MinIO application with four (4) application replicas with single replica of cStor volume and capacity of 10Gi on cStor pool.
 
@@ -306,7 +306,7 @@ The steps for provisioning MinIO application in standalone mode using Jiva volum
     or
     
     ```
-    kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-jiva-default.yaml
+    kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-standalone-jiva-default.yaml
     ```
     
      This will create a MinIO application on a PV with a replication factor of three (3) Jiva volume and capacity of 10Gi on default Jiva pool created on OS disk.
@@ -329,7 +329,7 @@ The steps for provisioning MinIO application in standalone mode using Jiva volum
      ```
      Or
      ```
-     kubectl apply -f https://raw.githubusercontent.com/ranjithwingrider/solution-app/master/minio-standalone-jiva-storagepool.yaml
+     kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/minio/minio-standalone-jiva-storagepool.yaml
      ```
      
      This will create a MinIO application on a PV with a replication factor of 3 Jiva volume and capacity of 10Gi on a Jiva pool created on external disks.
